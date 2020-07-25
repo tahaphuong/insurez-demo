@@ -10,7 +10,7 @@ body {
 
 #nav {
   height: 100px;
-  width: 100vw;
+  width: 100%;
   -webkit-box-shadow: 0 1px 10px 0px rgba(224, 224, 224, 0.5);
           box-shadow: 0 1px 10px 0px rgba(224, 224, 224, 0.5);
   position: fixed;
@@ -58,10 +58,20 @@ body {
   background-color: rgba(224, 224, 224, 0.5);
 }
 
+#buyer-screen {
+  width: 100%;
+  height: 100vh;
+}
+
 #buyer-nav {
-  width: 100vw;
-  height: 100px;
-  border-bottom: 1px solid #e0e0e0;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  background-color: white;
+  width: 100%;
+  height: 84px;
+  border-bottom: 0.5px solid #e0e0e0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -71,6 +81,12 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+#buyer-nav #nav-leading {
+  height: 100%;
+  width: 175px;
+  border-right: 0.5px solid #e0e0e0;
 }
 
 #buyer-nav-box {
@@ -93,15 +109,468 @@ body {
 #buyer-nav-box #user-avatar {
   height: 40px;
   width: 40px;
-  border: 1px solid #e0e0e0;
+  border: 0.5px solid #e0e0e0;
   border-radius: 50%;
   margin-right: 15px;
   background-image: url("https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png");
   background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 #buyer-nav-box:hover {
   background-color: rgba(224, 224, 224, 0.4);
+}
+
+#buyer-screen {
+  width: 100%;
+}
+
+#my-insurance-title {
+  margin-top: 150px;
+  margin-left: 90px;
+  margin-bottom: 50px;
+}
+
+#my-insurance-title #my-insurance-title-big {
+  color: #363636;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+#my-insurance-title #my-insurance-title-small {
+  color: #363636;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+#list-insurance {
+  position: relative;
+  padding-left: 90px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+#list-insurance .insurance-container {
+  cursor: pointer;
+  width: 20%;
+  height: 22vw;
+  border-radius: 10px;
+  border: 0.5px solid #e0e0e0;
+  margin-right: 4%;
+  margin-bottom: 4vw;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 70% 30%;
+      grid-template-rows: 70% 30%;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+#list-insurance .insurance-container:hover {
+  opacity: 0.9;
+  background-color: rgba(224, 224, 224, 0.2);
+}
+
+#list-insurance .insurance-container .insurance-image {
+  background-image: url("https://cdn.dribbble.com/users/472667/screenshots/4851114/family-insurane-illustration.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 100%;
+}
+
+#list-insurance .insurance-container .insurance-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#list-insurance .insurance-container .insurance-info .insurance-info-name {
+  color: #363636;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+#list-insurance .insurance-container .insurance-info .insurance-info-provider {
+  color: #363636;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.close-button {
+  cursor: pointer;
+  font-size: 30px;
+  text-align: right;
+  padding-top: 12px;
+  margin-right: 10px;
+}
+
+.close-button:hover {
+  opacity: 0.8;
+}
+
+.close-button:active {
+  opacity: 0.5;
+}
+
+#detail-order {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 11;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+#detail-order #detail-order-modal {
+  cursor: pointer;
+  margin: 10% auto;
+  position: relative;
+  z-index: 12;
+  height: 55%;
+  width: 600px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+#detail-order #detail-order-modal #detail-modal-info {
+  margin-top: 20px;
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 45% 55%;
+      grid-template-columns: 45% 55%;
+}
+
+#detail-order #detail-order-modal #detail-modal-info #detail-modal-info-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#detail-order #detail-order-modal #detail-modal-info #detail-modal-info-left #detail-name {
+  margin-top: 10px;
+  color: black;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+#detail-order #detail-order-modal #detail-modal-info #detail-modal-info-left #detail-name-provider {
+  color: black;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#detail-order #detail-order-modal #detail-modal-info #detail-modal-info-left #detail-price {
+  color: black;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+#detail-order #detail-order-modal #detail-modal-info #detail-modal-info-right #status-table {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 10% 55% 35%;
+      grid-template-columns: 10% 55% 35%;
+  margin-bottom: 20px;
+}
+
+#detail-order #detail-order-modal #detail-modal-info #detail-modal-info-right #status-table #status-table-title {
+  color: black;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+#detail-order #detail-order-modal #detail-modal-info #detail-modal-info-right #status-table .status-table-content {
+  color: black;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+#detail-order #detail-order-modal #detail-modal-info #detail-modal-info-right #detail-start-date > span, #detail-order #detail-order-modal #detail-modal-info #detail-modal-info-right #detail-end-date > span, #detail-order #detail-order-modal #detail-modal-info #detail-modal-info-right #detail-id > span {
+  font-weight: 700;
+}
+
+#detail-order #detail-order-modal #detail-modal-info #detail-modal-info-right #detail-status-title {
+  margin-bottom: 10px;
+}
+
+#detail-order #detail-order-modal #detail-modal-info #detail-modal-info-right #detail-status-title span {
+  font-weight: 700;
+}
+
+#my-insurance-title-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#add-insurance-button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  padding: 10px;
+  border: 0.5px solid #e0e0e0;
+  border-radius: 5px;
+  margin-right: 7vw;
+}
+
+#add-insurance-button:hover {
+  background-color: rgba(224, 224, 224, 0.1);
+}
+
+#add-insurance-button:active {
+  background-color: rgba(224, 224, 224, 0.4);
+}
+
+#add-insurance-modal-container {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 11;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+#add-insurance-modal-container #add-insurance-modal {
+  height: 45%;
+  width: 500px;
+  margin: 10% auto;
+  background-color: white;
+  border-radius: 10px;
+}
+
+#add-insurance-modal-container #add-insurance-modal #add-insurance-info {
+  margin: 5px 10px;
+  text-align: center;
+}
+
+#add-insurance-modal-container #add-insurance-modal #add-insurance-info #add-insu-title {
+  color: #363636;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+#add-insurance-modal-container #add-insurance-modal #add-insurance-info #add-insu-intro {
+  color: #363636;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#add-insurance-modal-container #add-insurance-modal #add-insurance-info #add-insu-notice {
+  color: #4d529e;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+#add-insurance-modal-container #add-insurance-modal #add-insurance-info #add-insu-notice span {
+  font-weight: 700;
+}
+
+#add-insurance-modal-container #add-insurance-modal #add-insurance-info #add-insu-form {
+  margin-top: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+#add-insurance-modal-container #add-insurance-modal #add-insurance-info #add-insu-form #contract-id-input {
+  height: 100%;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  cursor: text;
+  font-family: "Be Vietnam", sans-serif;
+  font-weight: 300;
+  border-bottom: 0.5px solid #e0e0e0;
+}
+
+#add-insurance-modal-container #add-insurance-modal #add-insurance-info #add-insu-form #contract-id-input:focus {
+  border-color: #4d529e;
+}
+
+.error-message {
+  color: #b44a4a;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: right;
+  margin-right: 40px;
+}
+
+#add-insu-button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  padding: 10px;
+  border: 0.5px solid #e0e0e0;
+  border-radius: 5px;
+}
+
+#add-insu-button:hover {
+  background-color: rgba(224, 224, 224, 0.1);
+}
+
+#add-insu-button:active {
+  background-color: rgba(224, 224, 224, 0.4);
+}
+
+#add-insurance-provider {
+  font-family: "Be Vietnam", sans-serif;
+  font-weight: 300;
+}
+
+#consulting-options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#select-provider-title {
+  color: #363636;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+#consulting-provider {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  padding: 10px;
+  border: 0.5px solid #e0e0e0;
+  border-radius: 5px;
+  color: black;
+  font-size: 16px;
+  font-weight: 300;
+  font-family: "Be Vietnam", sans-serif;
+}
+
+#consulting-provider:hover {
+  background-color: rgba(224, 224, 224, 0.1);
+}
+
+#consulting-provider:active {
+  background-color: rgba(224, 224, 224, 0.4);
+}
+
+#contacts-list-button, #contact-zalo-button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  padding: 10px;
+  border: 0.5px solid #e0e0e0;
+  border-radius: 5px;
+  background-color: #4d529e;
+  color: white;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+#contacts-list-button:hover, #contact-zalo-button:hover {
+  background-color: rgba(224, 224, 224, 0.1);
+}
+
+#contacts-list-button:active, #contact-zalo-button:active {
+  background-color: rgba(224, 224, 224, 0.4);
+}
+
+#contacts-list-button:hover, #contact-zalo-button:hover {
+  opacity: 0.7;
+  background-color: #4d529e;
+}
+
+#contacts-list-button:active, #contact-zalo-button:active {
+  opacity: 0.5;
+  background-color: #4d529e;
+}
+
+#consult-screen {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+  height: 100%;
+}
+
+#consult-screen #consult-bg {
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
 }
 /*# sourceMappingURL=main.css.map */

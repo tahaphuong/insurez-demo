@@ -76,6 +76,22 @@ view.showComponent = function (name) {
 
         case 'buyer': {
             app.innerHTML = components.buyer
+            var detailOrderModal = document.getElementById("detail-order");
+            var addInsuranceModal = document.getElementById("add-insurance-modal-container");
+
+            detailOrderModal.style.display = "none"
+            addInsuranceModal.style.display = "none"
+
+            var openDetailBtn = document.getElementById("demo");
+            var addInsuranceBtn = document.getElementById("add-insurance-button");
+
+            var cancelDetailBtn = document.getElementById("cancel-button");
+            var cancelAddInsuranceBtn = document.getElementById("cancel-button-add-insurance");
+
+
+            toggleModal(openDetailBtn, cancelDetailBtn, detailOrderModal)
+            toggleModal(addInsuranceBtn, cancelAddInsuranceBtn, addInsuranceModal)
+
             break
         }
 
@@ -128,5 +144,19 @@ const validators = {
 function allPassed(validateResult) {
     for (let result of validateResult) {
         if (!result) {return false} else {return true}
+    }
+}
+
+function toggleModal(triggerButton, closeButton, modal) {
+    triggerButton.onclick = function() {
+        modal.style.display = "block";
+    }
+    closeButton.onclick = function() {
+        modal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
 }

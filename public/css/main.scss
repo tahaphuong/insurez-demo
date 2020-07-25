@@ -36,6 +36,23 @@
   align-items: center;
 }
 
+@mixin coverBackground() {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+@mixin modalContainer() {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 11; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
 $lightFont: 300;
 $mediumFont: 500;
 $boldFont: 700;
@@ -44,11 +61,12 @@ $mainFontFamily: 'Be Vietnam', sans-serif;
 $lightGrey: #e0e0e0;
 $charcoal: #363636;
 $mainRed: #b44a4a;
-$mainColor: #2d316b;
+$mainColor: #4d529e;
 
 $headerHeight: 70px;
+$mainPadding: 90px;
 
-$lightBorder: 1px solid $lightGrey;
+$lightBorder: 0.5px solid $lightGrey;
 
 body, button {
   font-family: $mainFontFamily;
@@ -62,7 +80,7 @@ body {
 
 #nav {
   height: 100px;
-  width: 100vw;
+  width: 100%;
   box-shadow: 0 1px 10px 0px rgba($lightGrey, 0.5);
   position: fixed;
   top: 0;
@@ -96,14 +114,29 @@ body {
 //   @include text($mainRed, 20px, $lightFont);
 //   @include normalButton();
 // }
-
+#buyer-screen {
+  width: 100%;
+  height: 100vh;
+}
 #buyer-nav {
-  width: 100vw;
-  height: 100px;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  background-color: white;
+
+  width: 100%;
+  height: $headerHeight * 1.2;
   border-bottom: $lightBorder;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  #nav-leading {
+    height: 100%;
+    width: $headerHeight * 2.5;
+    border-right: $lightBorder;
+  }
+
 }
 
 #buyer-nav-box {
@@ -123,11 +156,263 @@ body {
     border-radius: 50%;
     margin-right: 15px;
     background-image: url('https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png');
-    background-position: center;
-    background-size: cover;
+    @include coverBackground();
   }
 }
 
 #buyer-nav-box:hover {
   background-color: rgba($lightGrey, 0.4);
+}
+
+#buyer-screen {
+  width: 100%;
+}
+
+#my-insurance-title {
+  margin-top: 150px;
+  margin-left: $mainPadding;
+  margin-bottom: 50px;
+
+  #my-insurance-title-big {
+    @include text($charcoal, 40px, $boldFont)
+  }
+  #my-insurance-title-small {
+    @include text($charcoal, 14px, $lightFont)
+  }
+}
+
+#list-insurance {
+  position: relative;
+  padding-left: $mainPadding;
+  display: flex;
+  flex-wrap: wrap;
+  .insurance-container {
+    cursor: pointer;
+    width: 20%;
+    height: 22vw;
+    border-radius: 10px;
+    border: $lightBorder;
+    margin-right: 4%;
+    margin-bottom: 4vw;
+    display: grid;
+    grid-template-rows: 70% 30%;
+    @include smoothTrans();
+    &:hover {
+      opacity: 0.9;
+      background-color: rgba($lightGrey, 0.2);
+    }
+    .insurance-image {
+      background-image: url('https://cdn.dribbble.com/users/472667/screenshots/4851114/family-insurane-illustration.jpg');
+      @include coverBackground();
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+
+      height: 100%;
+    }
+    .insurance-info {
+      @include displayCenter();
+      flex-direction: column;
+      .insurance-info-name {
+        @include text($charcoal, 15px, $mediumFont)
+      }
+      .insurance-info-provider {
+        @include text($charcoal, 12px, $lightFont)
+      }
+    }
+  }
+}
+
+// DETAIL ORDER 
+.close-button {
+  cursor: pointer;
+  font-size: 30px;
+  text-align: right;
+  padding-top: 12px;
+  margin-right: 10px;
+  &:hover {
+    opacity: 0.8;
+  }
+  &:active {
+    opacity: 0.5;
+  }
+}
+
+#detail-order {
+  @include modalContainer();
+
+  #detail-order-modal {
+    cursor: pointer;
+    margin: 10% auto;
+    position: relative;
+    z-index: 12;
+    height: 55%;
+    width: 600px;
+    background-color: white;
+    border-radius: 10px;
+    
+
+    #detail-modal-info {
+      margin-top: 20px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 45% 55%;
+      #detail-modal-info-left {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        #detail-name {
+          margin-top: 10px;
+          @include text(black, 18px, $boldFont);
+        }
+        #detail-name-provider {
+          @include text(black, 14px, $mediumFont);
+        }
+        #detail-price {
+          @include text(black, 14px, $lightFont);
+
+        }
+      }
+
+      #detail-modal-info-right {
+        #status-table {
+          width: 100%;
+          display: grid;
+          grid-template-columns: 10% 55% 35%;
+          margin-bottom: 20px;
+
+          #status-table-title {
+            @include text(black, 12px, $mediumFont);
+          }
+          .status-table-content {
+            @include text(black, 12px, $lightFont);
+          }
+        }
+        #detail-start-date>span, #detail-end-date>span, #detail-id>span {
+          font-weight: $boldFont;
+        }
+        #detail-status-title {
+          margin-bottom: 10px;
+
+          span {
+            font-weight: $boldFont;
+
+          }
+        }
+      }
+    }
+  }
+}
+
+#my-insurance-title-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+#add-insurance-button {
+  @include mainButton();
+  margin-right: 7vw;
+}
+
+#add-insurance-modal-container {
+  @include modalContainer();
+  #add-insurance-modal {
+    height: 45%;
+    width: 500px;
+    margin: 10% auto;
+    background-color: white;
+    border-radius: 10px;
+
+    #add-insurance-info {
+      margin: 5px 10px;
+      text-align: center;
+      #add-insu-title {
+        @include text($charcoal, 30px, $boldFont)
+      }
+      #add-insu-intro {
+        @include text($charcoal, 14px, $mediumFont)
+      }
+      #add-insu-notice {
+        @include text($mainColor, 14px, $lightFont);
+        span {
+          font-weight: $boldFont
+        }
+      }
+      #add-insu-form {
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-evenly;
+        #contract-id-input {
+          height: 100%;
+          @include normalButton();
+          cursor: text;
+          font-family: $mainFontFamily;
+          font-weight: $lightFont;
+          border-bottom: $lightBorder;
+          &:focus {
+            border-color: $mainColor;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.error-message {
+  @include text($mainRed, 12px, $mediumFont);
+  text-align: right;
+  margin-right: 40px;
+}
+
+#add-insu-button {
+  @include mainButton()
+}
+
+#add-insurance-provider {
+  font-family: $mainFontFamily;
+  font-weight: $lightFont;
+}
+
+#consulting-options {
+  display: flex;
+  align-items: center;
+}
+
+#select-provider-title {
+  @include text($charcoal, 20px, $boldFont)
+}
+
+#consulting-provider {
+  @include mainButton();
+  @include text(black, 16px, $lightFont);
+  font-family: $mainFontFamily;
+}
+
+#contacts-list-button, #contact-zalo-button {
+  @include mainButton();
+  background-color: $mainColor;
+  @include text(white, 11px, $mediumFont);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  &:hover {
+    opacity: 0.7;
+    background-color: $mainColor;
+  }
+  &:active {
+    opacity: 0.5;
+    background-color: $mainColor;
+  }
+}
+
+#consult-screen {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: 100%;
+
+  #consult-bg {
+    height: 100%;
+    width: 100%;
+    @include coverBackground();
+    background-image: url('https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
+  }
 }
