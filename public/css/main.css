@@ -1,0 +1,107 @@
+body, button {
+  font-family: "Be Vietnam", sans-serif;
+  font-weight: 300;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#nav {
+  height: 100px;
+  width: 100vw;
+  -webkit-box-shadow: 0 1px 10px 0px rgba(224, 224, 224, 0.5);
+          box-shadow: 0 1px 10px 0px rgba(224, 224, 224, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#nav-logo {
+  width: 100px;
+}
+
+#nav-options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#nav-options > div {
+  cursor: pointer;
+  width: 160px;
+  height: 100%;
+  color: black;
+  font-size: 16px;
+  font-weight: 300;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+#nav-options > div:hover {
+  background-color: rgba(224, 224, 224, 0.5);
+}
+
+#buyer-nav {
+  width: 100vw;
+  height: 100px;
+  border-bottom: 1px solid #e0e0e0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#buyer-nav-box {
+  cursor: pointer;
+  height: 70%;
+  padding: 0 15px;
+  margin-right: 30px;
+  border-radius: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#buyer-nav-box #user-avatar {
+  height: 40px;
+  width: 40px;
+  border: 1px solid #e0e0e0;
+  border-radius: 50%;
+  margin-right: 15px;
+  background-image: url("https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png");
+  background-position: center;
+  background-size: cover;
+}
+
+#buyer-nav-box:hover {
+  background-color: rgba(224, 224, 224, 0.4);
+}
+/*# sourceMappingURL=main.css.map */
