@@ -31,11 +31,15 @@ controller.getListOrdersSeller = async () => {
   view.showListOrdersSeller()
 }
 
-controller.acceptOrder = async () => {
+controller.acceptOrder = async (createdAt) => {
   let list = model.myListOrders
+  let userUid = "";
   if (list.length) {
     for (let item of list) {
-      item.accepted = true
+      if (item.createdAt == createdAt) {
+        item.accepted = true
+      }
+      userUid = item.userUid 
     }
     
     await firebase
@@ -45,6 +49,32 @@ controller.acceptOrder = async () => {
     .update({
       orders: list
     })
+
+    let list2 = []
+
+    await firebase
+    .firestore()
+    .collection('users')
+    .doc(userUid)
+    .get()
+    .then(doc=>{
+      list2 = doc.data().orders
+    })
+
+    for (let item of list2) {
+      if (item.createdAt == createdAt) {
+        item.accepted = true
+      }
+    }
+
+    await firebase
+    .firestore()
+    .collection('users')
+    .doc(userUid)
+    .update({
+      orders: list2
+    })
+
     model.saveListOrders(list)
     view.showListOrdersSeller()
   }

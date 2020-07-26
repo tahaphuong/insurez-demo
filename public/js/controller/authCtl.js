@@ -13,6 +13,7 @@ controller.register = async function(registerInfo) {
       await firebase.auth().currentUser.updateProfile({
           displayName: displayName
       })
+      await firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).set({})
       view.setText('login-success', 'Check your verification email')
   } catch (error) {
       view.setText('register-error', error.message)

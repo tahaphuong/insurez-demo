@@ -41,5 +41,5 @@ components.myOrderSeller = (order, index) => `
 <div class="orders-list-content">${index}</div>
 <div class="orders-list-content">${order.insuCode}</div>
 <div class="orders-list-content" style="font-size: 12px">${order.userUid}</div>
-<div class="orders-list-content" class="accept-button" onclick="controller.acceptOrder('${order.createdAt}')" style="color: ${order.accepted ? '#71a852' : 'blue'}">${order.accepted ? 'Hoàn thành' : 'Xác nhận'}</div>
+<div class="orders-list-content" style="cursor: pointer" class="accept-button" onclick="controller.acceptOrder('${order.createdAt}')" style="color: ${order.accepted ? '#71a852' : 'blue'}">${order.accepted ? 'Hoàn thành' : 'Xác nhận'}</div>
 <div class="orders-list-content"><a href="#">Xem đơn hàng</a></div>`
