@@ -1,7 +1,7 @@
 controller.register = async function(registerInfo) {
   let email = registerInfo.email
   let password = registerInfo.password
-  let displayName = registerInfo.firstname + " " + registerInfo.lastname
+  let displayName = registerInfo.name 
   let button = document.getElementById('buttonSubmitRegister')
 
   button.setAttribute('disabled', true)
@@ -13,6 +13,7 @@ controller.register = async function(registerInfo) {
       await firebase.auth().currentUser.updateProfile({
           displayName: displayName
       })
+      await firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid).set({})
       view.setText('login-success', 'Check your verification email')
   } catch (error) {
       view.setText('register-error', error.message)

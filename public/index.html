@@ -1,6 +1,8 @@
 <html lang="en">
   <script defer src="/__/firebase/7.16.1/firebase-app.js"></script>
   <script defer src="/__/firebase/7.16.1/firebase-auth.js"></script>
+  <script defer src="/__/firebase/7.16.1/firebase-firestore.js"></script>
+
   <script defer src="/__/firebase/init.js"></script>
 
   
@@ -10,32 +12,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam:wght@300;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/main.css">
-  <title>demo</title>
-  
+  <title>demo</title>  
   <script src="./js/components/mainCpn.js"></script>
   <script src="./js/components/authCpn.js"></script>
   <script src="./js/components/buyerCpn.js"></script>
+  <script src="./js/components/sellerCpn.js"></script>
 
 
   <script src="./js/controller/mainCtl.js"></script>
   <script src="./js/controller/authCtl.js"></script>
+  <script src="./js/controller/buyerCtl.js"></script>
+  <script src="./js/controller/sellerCtl.js"></script>
 
+
+  <script src="./js/model.js"></script>
   <script src="./js/view/mainView.js"></script>
   <script src="./js/view/authView.js"></script>
+
 </head>
 
 <body>
   <div id="app">
-    <div id="buyer-screen">
-      <div id="buyer-nav">
-        <div id="nav-logo"></div>
-        <div id="buyer-nav-box">
-          <div id="user-avatar"></div>
-          <div id="user-name">Hello</div>
-        </div>
-      </div>
-    </div>
   </div>
-</body>
+</body> 
 
 </html>
