@@ -5,7 +5,7 @@ controller.initAuth = function ()
     firebase.auth().onAuthStateChanged(onAuthStateChangedHandler)
     function onAuthStateChangedHandler(user) {
         if (user) {
-            view.showComponent('buyer')
+            view.showComponent('myInsuScreen')
         } else {
             view.showComponent('logIn')
         }

@@ -77,7 +77,9 @@ body {
   margin: 0;
   padding: 0;
 }
-
+input {
+  font-family: $mainFontFamily;
+}
 #nav {
   height: 100px;
   width: 100%;
@@ -138,16 +140,22 @@ body {
   }
 
 }
-
 #buyer-nav-box {
+  margin-right: 30px;
+}
+.buyer-nav-box {
   cursor: pointer;
   height: 70%;
   padding: 0 15px;
-  margin-right: 30px;
   border-radius: 15px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  @include text($charcoal, 15px, $lightFont);
+
+  &:hover {
+    background-color: rgba($lightGrey, 0.4);
+  }
 
   #user-avatar {
     height: 40px;
@@ -158,10 +166,6 @@ body {
     background-image: url('https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png');
     @include coverBackground();
   }
-}
-
-#buyer-nav-box:hover {
-  background-color: rgba($lightGrey, 0.4);
 }
 
 #buyer-screen {
@@ -245,8 +249,8 @@ body {
     margin: 10% auto;
     position: relative;
     z-index: 12;
-    height: 55%;
     width: 600px;
+    height: 55%;
     background-color: white;
     border-radius: 10px;
     
@@ -341,6 +345,14 @@ body {
         margin-top: 15px;
         display: flex;
         justify-content: space-evenly;
+        button {
+          background-color: $mainColor;
+          @include text(white, 14px, $mediumFont);
+          &:hover, &:active {
+            opacity: 0.7;
+            background-color: $mainColor;
+          }
+        }
         #contract-id-input {
           height: 100%;
           @include normalButton();
@@ -361,7 +373,6 @@ body {
 .error-message {
   @include text($mainRed, 12px, $mediumFont);
   text-align: right;
-  margin-right: 40px;
 }
 
 #add-insu-button {
@@ -415,4 +426,55 @@ body {
     @include coverBackground();
     background-image: url('https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
   }
+}
+
+#orders-list {
+  display: grid;
+  grid-template-columns: 10% 25% 20% 20% 25%;
+  .orders-list-title {
+    @include text($charcoal, 13px, $boldFont)
+  }
+  .orders-list-content {
+    @include text($charcoal, 16px, $lightFont)
+  }
+}
+
+.new-order-row-inputs {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 40px;
+
+}
+
+#add-order-modal-container, #add-claim-modal-container {
+  @include modalContainer();
+}
+
+#add-order-modal, #add-claim-modal {
+  background-color: white;
+  width: 500px;
+  border-radius: 10px;
+  padding: 20px 10px;
+  margin: 10% auto;
+
+  input {
+    font-size: 16px;
+  }
+}
+
+#add-order-title {
+  @include text(black, 22px, $boldFont);
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+#add-new-order-button, #add-new-claim-button {
+@include mainButton()
+}
+
+#footer-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 40px;
 }

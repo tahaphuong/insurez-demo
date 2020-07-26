@@ -1,6 +1,7 @@
 const view = {};
 
-view.showComponent = function (name) {
+view.showComponent = async function (name) {
+    const navColor = '#e2e4ff'
     let app = document.getElementById('app')
     switch (name) {
         case 'register': {
@@ -74,32 +75,45 @@ view.showComponent = function (name) {
             break
         }
 
-        case 'buyer': {
-            app.innerHTML = components.buyer
-            var detailOrderModal = document.getElementById("detail-order");
-            var addInsuranceModal = document.getElementById("add-insurance-modal-container");
+        case 'myInsuScreen': {
+            app.innerHTML = components.myInsuScreen
+            let nav = document.getElementById(name)
 
-            detailOrderModal.style.display = "none"
-            addInsuranceModal.style.display = "none"
+            nav.style.backgroundColor = navColor
+        
+            toggleModal("add-insurance-button", "cancel-button-add-insurance", "add-insurance-modal-container")
 
-            var openDetailBtn = document.getElementById("demo");
-            var addInsuranceBtn = document.getElementById("add-insurance-button");
-
-            var cancelDetailBtn = document.getElementById("cancel-button");
-            var cancelAddInsuranceBtn = document.getElementById("cancel-button-add-insurance");
-
-
-            toggleModal(openDetailBtn, cancelDetailBtn, detailOrderModal)
-            toggleModal(addInsuranceBtn, cancelAddInsuranceBtn, addInsuranceModal)
-
+            await controller.getListInsus()
+            break
+        }
+        case 'consultScreen': {
+            app.innerHTML = components.consultScreen
+            let nav = document.getElementById(name)
+            nav.style.backgroundColor = navColor
+            break
+        }
+        case 'orderScreen': {
+            app.innerHTML = components.orderScreen
+            let nav = document.getElementById(name)
+            nav.style.backgroundColor = navColor
+            toggleModal("add-insurance-button", "cancel-button-add-order", "add-order-modal-container")
+            await controller.getListOrders()
+            break
+        }
+        case 'claimScreen': {
+            app.innerHTML = components.claimScreen
+            let nav = document.getElementById(name)
+            nav.style.backgroundColor = navColor
+            toggleModal("add-insurance-button", "cancel-button-add-claim", "add-claim-modal-container")
+            await controller.getListClaims()
             break
         }
 
-        case 'loading': {
+        default: {
             app.innerHTML = components.loading
-
             break
         }
+
     }
 }
 
@@ -147,16 +161,61 @@ function allPassed(validateResult) {
     }
 }
 
-function toggleModal(triggerButton, closeButton, modal) {
-    triggerButton.onclick = function() {
-        modal.style.display = "block";
+function getById(id) {
+    return document.getElementById(id)
+}
+function toggleModal(triggerButtonId, closeButtonId, modalId) {
+    getById(triggerButtonId).onclick = function() {
+        for (let insu of model.myListInsus) {
+            if ('insu-' + insu.contractId == triggerButtonId) {
+                getById('detail-name-provider').innerText = insu.provider + ' Insurance'
+                getById('detail-name').innerText = insu.insuCode
+                getById('detail-id').innerHTML = `<span>contract's ID: </span>${insu.contractId}`
+                getById('detail-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${insu.contractId}`
+            }
+        }
+        getById(modalId).style.display = "block";
     }
-    closeButton.onclick = function() {
-        modal.style.display = "none";
+    getById(closeButtonId).onclick = function() {
+        getById(modalId).style.display = "none";
     }
     window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+        if (event.target == getById(modalId)) {
+            getById(modalId).style.display = "none";
         }
+    }
+}
+
+view.showListInsus = () => {
+    if (model.myListInsus.length > 0) {
+        getById('list-insurance').innerHTML = ``
+        for (let item of model.myListInsus) {
+            getById('list-insurance').innerHTML += components.myInsu(item)
+            toggleModal('insu-' + item.contractId, 'cancel-button', 'detail-order')
+        }
+    } else {
+        getById('list-insurance').innerHTML = 'Chưa có dữ liệu'
+    }
+}
+
+view.showListOrders = () => {
+    if (model.myListOrders.length > 0) {
+        getById('orders-list').innerHTML = components.orderTitle
+        for (let i=0; i<model.myListOrders.length; i++) {
+            getById('orders-list').innerHTML += components.myOrder(model.myListOrders[i], i+1)
+        }
+    } else {
+        getById('orders-list').innerHTML = 'Chưa có dữ liệu'
+    }
+}
+
+view.showListClaims = () => {
+    if (model.myListClaims.length > 0) {
+        getById('orders-list').innerHTML = components.claimTitle
+        for (let i=0; i<model.myListClaims.length; i++) {
+            getById('orders-list').innerHTML += components.myOrder(model.myListClaims[i], i+1)
+        }
+    } else {
+        getById('orders-list').innerHTML = 'Chưa có dữ liệu'
     }
 }
