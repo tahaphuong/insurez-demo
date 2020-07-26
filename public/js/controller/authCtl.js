@@ -1,7 +1,7 @@
 controller.register = async function(registerInfo) {
   let email = registerInfo.email
   let password = registerInfo.password
-  let displayName = registerInfo.firstname + " " + registerInfo.lastname
+  let displayName = registerInfo.name 
   let button = document.getElementById('buttonSubmitRegister')
 
   button.setAttribute('disabled', true)

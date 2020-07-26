@@ -397,8 +397,8 @@ input {
 }
 
 #add-insurance-modal-container #add-insurance-modal {
-  height: 45%;
-  width: 500px;
+  height: 55%;
+  width: 650px;
   margin: 10% auto;
   background-color: white;
   border-radius: 10px;
@@ -453,7 +453,7 @@ input {
   background-color: #4d529e;
 }
 
-#add-insurance-modal-container #add-insurance-modal #add-insurance-info #add-insu-form #contract-id-input {
+#add-insurance-modal-container #add-insurance-modal #add-insurance-info #add-insu-form #contract-id-input, #add-insurance-modal-container #add-insurance-modal #add-insurance-info #add-insu-form #insu-code-input {
   height: 100%;
   cursor: pointer;
   outline: none;
@@ -467,7 +467,7 @@ input {
   border-bottom: 0.5px solid #e0e0e0;
 }
 
-#add-insurance-modal-container #add-insurance-modal #add-insurance-info #add-insu-form #contract-id-input:focus {
+#add-insurance-modal-container #add-insurance-modal #add-insurance-info #add-insu-form #contract-id-input:focus, #add-insurance-modal-container #add-insurance-modal #add-insurance-info #add-insu-form #insu-code-input:focus {
   border-color: #4d529e;
 }
 
@@ -488,6 +488,11 @@ input {
   padding: 10px;
   border: 0.5px solid #e0e0e0;
   border-radius: 5px;
+  background-color: #4d529e;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  border-color: transparent;
 }
 
 #add-insu-button:hover {
@@ -496,6 +501,15 @@ input {
 
 #add-insu-button:active {
   background-color: rgba(224, 224, 224, 0.4);
+}
+
+#add-insu-button:hover, #add-insu-button:active {
+  opacity: 0.8;
+  background-color: #4d529e;
+}
+
+#add-insu-button:active {
+  opacity: 0.6;
 }
 
 #add-insurance-provider {
@@ -696,5 +710,117 @@ input {
       -ms-flex-align: center;
           align-items: center;
   margin: 20px 40px;
+}
+
+.loading-container {
+  height: 100vh;
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.login-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+}
+
+.login-container form {
+  margin-top: 100px;
+  margin-left: 100px;
+}
+
+.login-container #auth-bg {
+  height: 100vh;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
+}
+
+.register-title {
+  color: black;
+  font-size: 35px;
+  font-weight: 700;
+}
+
+.input-wrapper {
+  margin-bottom: 10px;
+}
+
+.input-wrapper input {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  padding: 10px;
+  border: 0.5px solid #e0e0e0;
+  border-radius: 5px;
+  cursor: text;
+}
+
+.input-wrapper input:hover {
+  background-color: rgba(224, 224, 224, 0.1);
+}
+
+.input-wrapper input:active {
+  background-color: rgba(224, 224, 224, 0.4);
+}
+
+.buttonSubmit {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  padding: 10px;
+  border: 0.5px solid #e0e0e0;
+  border-radius: 5px;
+  border-color: #4d529e;
+}
+
+.buttonSubmit:hover {
+  background-color: rgba(224, 224, 224, 0.1);
+}
+
+.buttonSubmit:active {
+  background-color: rgba(224, 224, 224, 0.4);
+}
+
+.form-footer {
+  margin-top: 30px;
+}
+
+.already-have-an-acount {
+  color: #4d529e;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.accept-button {
+  cursor: pointer;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  font-weight: 500;
+}
+
+.accept-button:hover {
+  opacity: 0.8;
+}
+
+.accept-button:active {
+  opacity: 0.6;
 }
 /*# sourceMappingURL=main.css.map */

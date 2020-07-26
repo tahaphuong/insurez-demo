@@ -1,24 +1,16 @@
 components.register = `
-<div class="register-page-grid">
-    <section>
-    </section>
+<div class="login-container">
+
     <section class="register-container">
         <form id="register-form" class="register-form">
             <div class="form-header">
-                <p class="register-title montserrat-font">Register</p>
+                <p class="register-title montserrat-font">Đăng kí InsurEZ</p>
             </div>
 
             <div class="form-content">
-                <div class="name-wrapper">
-                    <div class="name-input-wrapper">
-                        <input type="text" name="firstname" placeholder="First name">
-                        <div id="firstname-error" class="error-message"></div>
-                    </div>
-
-                    <div class="name-input-wrapper">
-                        <input type="text" name="lastname" placeholder="Last name" style="display:flex; float:right">
-                        <div id="lastname-error" class="error-message"></div>
-                    </div>
+                <div class="input-wrapper">
+                    <input type="text" name="name" placeholder="Name">
+                    <div id="name-error" class="error-message"></div>
                 </div>
 
                 <div class="input-wrapper">
@@ -38,21 +30,22 @@ components.register = `
             </div>
             <div id="register-error" class="message-error"></div>
             <div id="register-success" class="message-success"></div>
+            
+            <button type="submit" id="buttonSubmitRegister" class="buttonSubmit montserrat-font">Đăng kí 👌</button>
             <div class="form-footer">
-                <a id="register-link" href="#login-form" class="already-have-an-acount">Already have an account? Login</a>
-                <button type="submit" id="buttonSubmitRegister" class="buttonSubmit montserrat-font">Register</button>
+                <a id="register-link" href="#login-form" class="already-have-an-acount">Đã có tài khoản? Đăng nhập</a>
             </div>
         </form>
     </section>
+    <div id="auth-bg"></div>
 </div>
 `
 
 components.logIn = `
 <section class="login-container">
-    <div></div>
     <form id="login-form" class="login-form">
     <div class="form-header">
-        <p class="register-title montserrat-font">Log In</p>
+        <p class="register-title montserrat-font">Đăng nhập InsurEZ</p>
     </div>
     <div class="input-wrapper">
         <input type="email" name="email" placeholder="Email">
@@ -64,12 +57,12 @@ components.logIn = `
     </div>
     <div id="login-error" class="message-error"></div>
     <div id="login-success" style="color: green" class="message-error"></div>
+    <button type="submit" id="buttonSubmitLogin" class="buttonSubmit montserrat-font">Đăng nhập 👌</button>
     <div class="form-footer">
-        <a id="log-in-link" class="already-have-an-acount" style="cursor: pointer">Not have an account? Register</a>
-        <button type="submit" id="buttonSubmitLogin" class="buttonSubmit montserrat-font">Log in</button>
+        <a id="log-in-link" class="already-have-an-acount" style="cursor: pointer">Chưa có tài khoản? Đăng kí</a>
     </div>
     </form>
-    <div></div>
+    <div id="auth-bg"></div>
 </section>
 `
 

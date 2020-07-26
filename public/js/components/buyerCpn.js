@@ -1,5 +1,5 @@
 components.myInsu = (insu) => `
-<div class="insurance-container" id="insu-${insu.contractId}">
+<div class="insurance-container" id="insu-${insu.contractId}" onclick="toggleModalInsu('${insu.contractId}', 'cancel-button', 'detail-order')">
 <div class="insurance-image"></div>
 <div class="insurance-info">
   <div class="insurance-info-name">${insu.insuCode}</div>
@@ -23,7 +23,7 @@ components.addNewOrderModal = `
     </div>
     <div id="footer-wrapper">
       <button id="add-new-order-button">🧾 Thêm đơn hàng</button>
-      <div id="add-insu-error" class="error-message">This is a demo error</div>
+      <div id="add-insu-error" class="error-message"></div>
     </div>
   </div>
 </div>
@@ -45,8 +45,8 @@ components.addNewClaimModal = `
       </select>
     </div>
     <div id="footer-wrapper">
-      <button id="add-new-order-button">🧾 Thêm yêu cầu</button>
-      <div id="add-insu-error" class="error-message">This is a demo error</div>
+      <button id="add-new-claim-button">🧾 Thêm yêu cầu</button>
+      <div id="add-insu-error" class="error-message"></div>
     </div>
   </div>
 </div>
@@ -56,7 +56,7 @@ components.myOrder = (order, index) => `
 <div class="orders-list-content">${index}</div>
 <div class="orders-list-content">${order.insuCode}</div>
 <div class="orders-list-content">${order.provider} Insurance</div>
-<div class="orders-list-content">${order.status}</div>
+<div class="orders-list-content" style="color: ${order.accepted ? '#71a852' : 'black'}">${order.accepted ? 'Hoàn thành' : 'Đang đợi'}</div>
 <div class="orders-list-content"><a href="#">Xem đơn hàng</a></div>`
 
 components.buyerNav = `
@@ -66,9 +66,9 @@ components.buyerNav = `
       <div class="buyer-nav-box" id="consultScreen" onclick="view.showComponent('consultScreen')">Tư vấn</div>
       <div class="buyer-nav-box" id="orderScreen" onclick="view.showComponent('orderScreen')">Đặt hàng</div>
       <div class="buyer-nav-box" id="claimScreen" onclick="view.showComponent('claimScreen')">Yêu cầu</div>
-      <div class="buyer-nav-box" id="buyer-nav-box" onclick="view.showComponent">
+      <div class="buyer-nav-box" id="buyer-nav-box" onclick="logOut()">
         <div id="user-avatar"></div>
-        <div id="user-name">Hello Hello</div>
+        <div id="user-name"></div>
       </div>
     </div>
 `
@@ -121,19 +121,20 @@ components.addNewInsuranceModal = `
       <div id="add-insu-notice"><span>Lưu ý: </span> Tài khoản cần được xác minh để thêm bảo hiểm</div>
       <div style="height: 20px"></div>
       <div id="add-insu-form">
-        <select id="add-insurance-provider" name="provider-list">
+        <select id="consulting-provider" name="provider-list">
           <option value="abc">ABC Insurance</option>
           <option value="healtha">Healtha Insurance</option>
           <option value="Litey">Litey Insurance</option>
           <option value="Comfi">Comfi Insurance</option>
         </select>
         <div><input id="contract-id-input" placeholder="Mã hợp đồng"/></div>
-        <button id="add-insu-button">Thêm online</button>
+        <div><input id="insu-code-input" placeholder="Mã bảo hiểm"/></div>
       </div>
     </div>
     <div style="height: 5px"></div>
     <div id="footer-wrapper">
-      <div id="add-insu-error" class="error-message">This is a demo error</div>
+      <button id="add-insu-button">Thêm hợp đồng</button>
+      <div id="add-insu-error" class="error-message"></div>
     </div>
   </div>
 </div>
@@ -199,6 +200,21 @@ components.claimTitle = `
           <div class="orders-list-title">Trạng thái</div>
           <div class="orders-list-title">Ghi chú</div>
 `
+
+components.orderTitleSeller = `
+<div class="orders-list-title">STT</div>
+          <div class="orders-list-title">Mã bảo hiểm</div>
+          <div class="orders-list-title">Mã khách hàng</div>
+          <div class="orders-list-title">Trạng thái</div>
+          <div class="orders-list-title">Ghi chú</div>
+`
+components.claimTitleSeller = `
+<div class="orders-list-title">STT</div>
+          <div class="orders-list-title">Mã bảo hiểm</div>
+          <div class="orders-list-title">Mã khách hàng</div>
+          <div class="orders-list-title">Trạng thái</div>
+          <div class="orders-list-title">Ghi chú</div>
+`
 components.orderScreen = `
 ${components.buyerNav}
       <div id="my-insurance-title">
@@ -212,17 +228,6 @@ ${components.buyerNav}
         <div id="select-provider-title">Danh sách đơn hàng</div>
         <div style="height: 10px"></div>
         <div id="orders-list">
-          <div class="orders-list-content">1</div>
-          <div class="orders-list-content">Bảo hiểm nhân thọ</div>
-          <div class="orders-list-content">ABC Insurance</div>
-          <div class="orders-list-content">Đang chờ</div>
-          <div class="orders-list-content"><a href="#">Xem đơn hàng</a></div>
-
-          <div class="orders-list-content">2</div>
-          <div class="orders-list-content">Bảo hiểm du lịch</div>
-          <div class="orders-list-content">Litey Insurance</div>
-          <div class="orders-list-content">Đã mua</div>
-          <div class="orders-list-content"><a href="#">Xem hợp đồng</a></div>
         </div>
       </div>
   ${components.addNewOrderModal}
@@ -240,23 +245,6 @@ ${components.buyerNav}
         <div id="select-provider-title">Danh sách yêu cầu</div>
         <div style="height: 10px"></div>
         <div id="orders-list">
-          <div class="orders-list-title">STT</div>
-          <div class="orders-list-title">Tên bảo hiểm</div>
-          <div class="orders-list-title">Nhà cung cấp</div>
-          <div class="orders-list-title">Trạng thái</div>
-          <div class="orders-list-title">Ghi chú</div>
-
-          <div class="orders-list-content">1</div>
-          <div class="orders-list-content">Bảo hiểm nhân thọ</div>
-          <div class="orders-list-content">ABC Insurance</div>
-          <div class="orders-list-content">Đang chờ</div>
-          <div class="orders-list-content"><a href="#">Xem yêu cầu</a></div>
-
-          <div class="orders-list-content">2</div>
-          <div class="orders-list-content">Bảo hiểm du lịch</div>
-          <div class="orders-list-content">Litey Insurance</div>
-          <div class="orders-list-content">Hoàn thành</div>
-          <div class="orders-list-content"><a href="#">Xem hóa đơn</a></div>
         </div>
       </div>
   ${components.addNewClaimModal}

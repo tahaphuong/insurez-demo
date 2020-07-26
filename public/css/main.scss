@@ -320,8 +320,8 @@ input {
 #add-insurance-modal-container {
   @include modalContainer();
   #add-insurance-modal {
-    height: 45%;
-    width: 500px;
+    height: 55%;
+    width: 650px;
     margin: 10% auto;
     background-color: white;
     border-radius: 10px;
@@ -353,7 +353,7 @@ input {
             background-color: $mainColor;
           }
         }
-        #contract-id-input {
+        #contract-id-input, #insu-code-input {
           height: 100%;
           @include normalButton();
           cursor: text;
@@ -376,7 +376,17 @@ input {
 }
 
 #add-insu-button {
-  @include mainButton()
+  @include mainButton();
+  background-color: $mainColor;
+  @include text(white, 14px, $mediumFont);
+  border-color: transparent;
+  &:hover, &:active {
+    opacity: 0.8;
+    background-color: $mainColor;
+  }
+  &:active {
+    opacity: 0.6;
+  }
 }
 
 #add-insurance-provider {
@@ -477,4 +487,63 @@ input {
   justify-content: space-between;
   align-items: center;
   margin: 20px 40px;
+}
+
+.loading-container {
+  height: 100vh;
+  width: 100vw;
+  @include displayCenter()
+}
+
+.login-container {
+  form {
+    margin-top: 100px;
+  margin-left: 100px;
+  }
+  display: grid;
+  grid-template-columns: 50% 50%;
+  #auth-bg {
+    height: 100vh;
+    width: 100%;
+    @include coverBackground();
+    background-image: url('https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
+  }
+}
+
+.register-title {
+  @include text(black, 35px, $boldFont)
+}
+
+.input-wrapper {
+  margin-bottom: 10px;
+
+  input {
+    @include mainButton();
+    cursor: text
+  }
+}
+
+.buttonSubmit {
+  @include mainButton();
+  border-color: $mainColor;
+}
+
+.form-footer {
+  margin-top: 30px;
+}
+
+.already-have-an-acount {
+  @include text($mainColor, 12px, $mediumFont)
+}
+
+.accept-button {
+  cursor: pointer;
+  @include smoothTrans();
+  font-weight: $mediumFont;
+  &:hover {
+    opacity: 0.8;
+  }
+  &:active {
+    opacity: 0.6;
+  }
 }
